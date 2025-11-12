@@ -3,7 +3,6 @@ import Galaxy from "../threeModels/stars/Galaxy";
 import About from "../pages/About";
 import Skills from "./Skills";
 import { Canvas } from "@react-three/fiber";
-import { View } from "@react-three/drei";
 import StarBackground from "../threeModels/stars/StarBackground";
 import { useFPS } from "../utils/Hooks";
 import { Button, Typography } from "@mui/material";
@@ -50,7 +49,6 @@ function ScrollButton({
 export default function BasePage() {
     // For tracking viewport
     const containerRef = useRef<any>();
-    const galaxyView = useRef<any>();
     const starView = useRef<any>();
 
     const [version, setVersion] = useState<pageVersion>(pageVersion.default);
