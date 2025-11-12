@@ -12,10 +12,14 @@ import TextAndShapes from "../shapes/TextAndShapes";
 import Stars from "./Stars";
 import { useWindow } from "../../utils/Hooks";
 
+function scrollTo(id: string) {
+    document.getElementById(id)?.scrollIntoView();
+}
+
 const TWO_PI: number = 2 * Math.PI;
 const galaxyRadius = 300;
 
-function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
+function Content({ periodTime = 20, rotate = true }: any) {
     const { aspect } = useWindow();
 
     const [galaxyDiskSpring] = useSpring(() => ({
@@ -75,13 +79,11 @@ function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
                 </a.mesh>
                 {/* Center Piece */}
                 <TextAndShapes
+                    onClick={() => {
+                        document.getElementById("about")?.scrollIntoView();
+                    }}
                     position={[0, 0, 0]}
                     groupTextArgs={{ rotation: counterRotate.rotation }}
-                    onClick={() => {
-                        console.log("clicked");
-
-                        scrollRefs.about?.current.scrollIntoView();
-                    }}
                     text={[
                         {
                             content: "Joshua Bernstein",
@@ -126,13 +128,11 @@ function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
                 />
             </a.group>
             {aspect > 0.8 && (
-                <group>
+                <group visible={true}>
                     {/* Skills */}
                     <TextAndShapes
+                        onClick={() => scrollTo("skills")}
                         position={[120, -130, 0]}
-                        onClick={() => {
-                            scrollRefs.skills?.current.scrollIntoView();
-                        }}
                         text={[
                             {
                                 content: "Skills",
@@ -165,10 +165,8 @@ function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
 
                     {/* Education */}
                     <TextAndShapes
+                        onClick={() => scrollTo("education")}
                         position={[-200, 0, 0]}
-                        onClick={() => {
-                            scrollRefs.education?.current.scrollIntoView();
-                        }}
                         text={[
                             {
                                 content: "Education",
@@ -200,10 +198,8 @@ function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
 
                     {/* Experience */}
                     <TextAndShapes
+                        onClick={() => scrollTo("experience")}
                         position={[-120, -130, 0]}
-                        onClick={() => {
-                            scrollRefs.experience?.current.scrollIntoView();
-                        }}
                         text={[
                             {
                                 content: "Experience",
@@ -233,10 +229,8 @@ function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
 
                     {/* Projects */}
                     <TextAndShapes
+                        onClick={() => scrollTo("projects")}
                         position={[200, 0, 0]}
-                        onClick={() => {
-                            scrollRefs.projects?.current.scrollIntoView();
-                        }}
                         text={[
                             {
                                 content: "Projects",
@@ -269,21 +263,12 @@ function Content({ periodTime = 20, scrollRefs, rotate = true }: any) {
     );
 }
 
-export default function Galaxy({ scrollRefs }: any) {
+export default function Galaxy() {
     return (
         <>
             <PerspectiveCamera makeDefault position={[0, -100, 200]} fov={90} />
             <ambientLight intensity={0.85} />
-            <Content scrollRefs={scrollRefs} rotate={true} periodTime={120} />
-            {/* <Stars 
-                centerPosition={[0,-100,-.1]}
-                points={backgroundGalaxyPoints}
-                pointTransform={(e: any) => e}
-                zPos={-100} 
-                numStars={300} 
-                brightnessRange={[0.5, 1]} 
-                radiusRange={[.1, .5]} 
-            /> */}
+            <Content rotate={true} periodTime={120} />
         </>
     );
 }

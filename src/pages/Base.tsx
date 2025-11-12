@@ -17,18 +17,17 @@ function FPSCounter({ onFail = () => {} }) {
     return <></>;
 }
 
-enum pageVersion {
+const enum pageVersion {
     noThree,
     default,
     small,
 }
 
 function ScrollButton({
-    scrollRef,
     color = "primary",
     label = "empty",
 }: {
-    scrollRef: any;
+    link: string;
     color?: any;
     label?: string;
 }) {
@@ -42,9 +41,6 @@ function ScrollButton({
                 fontWeight: 400,
                 margin: ".5rem",
             }}
-            onClick={() => {
-                scrollRef.current.scrollIntoView();
-            }}
         >
             {label}
         </Button>
@@ -52,13 +48,6 @@ function ScrollButton({
 }
 
 export default function BasePage() {
-    // For jumping to sections
-    const aboutRef = useRef<any>();
-    const educationRef = useRef<any>();
-    const skillsRef = useRef<any>();
-    const projectsRef = useRef<HTMLDivElement>();
-    const experienceRef = useRef<any>();
-
     // For tracking viewport
     const containerRef = useRef<any>();
     const galaxyView = useRef<any>();
@@ -90,10 +79,16 @@ export default function BasePage() {
                     margin: 0,
                 }}
             >
-                <div
-                    ref={galaxyView}
-                    style={{ width: "100%", height: "100%" }}
-                />
+                <Canvas linear flat dpr={[1, 2]}>
+                    <FPSCounter
+                        onFail={() => {
+                            setVersion(pageVersion.noThree);
+                        }}
+                    />
+                    {/* Centerpiece */}
+                    {/* <View track={galaxyView} index={0}></View> */}
+                    <Galaxy />
+                </Canvas>
             </div>
 
             <div
@@ -149,32 +144,29 @@ export default function BasePage() {
                                 textAlign: "center",
                             }}
                         >
-                            <ScrollButton
-                                label="About Me"
-                                scrollRef={aboutRef}
-                            />{" "}
+                            <ScrollButton label="About Me" link="about" />{" "}
                             <br />
                             <ScrollButton
                                 label="Education"
-                                scrollRef={educationRef}
+                                link="education"
                                 color="success"
                             />{" "}
                             <br />
                             <ScrollButton
                                 label="Experience"
-                                scrollRef={experienceRef}
+                                link="experience"
                                 color="warning"
                             />{" "}
                             <br />
                             <ScrollButton
                                 label="Skills"
-                                scrollRef={experienceRef}
+                                link="skills"
                                 color="secondary"
                             />{" "}
                             <br />
                             <ScrollButton
                                 label="Projects"
-                                scrollRef={projectsRef}
+                                link="projects"
                                 color="info"
                             />{" "}
                             <br />
@@ -195,11 +187,11 @@ export default function BasePage() {
                 }}
             >
                 <div style={{ height: "100vh" }} />
-                <About scrollRef={aboutRef} />
-                <Education scrollRef={educationRef} />
-                <Experience scrollRef={experienceRef} />
-                <Skills scrollRef={skillsRef} />
-                <Projects scrollRef={projectsRef} />
+                <About />
+                <Education />
+                <Experience />
+                <Skills />
+                <Projects />
             </div>
 
             {!noThree && (
@@ -222,15 +214,7 @@ export default function BasePage() {
                         />
                         {/* Centerpiece */}
                         <View track={galaxyView} index={0}>
-                            <Galaxy
-                                scrollRefs={{
-                                    about: aboutRef,
-                                    education: educationRef,
-                                    skills: skillsRef,
-                                    projects: projectsRef,
-                                    experience: experienceRef,
-                                }}
-                            />
+                            <Galaxy />
                         </View>
 
                         <StarBackground

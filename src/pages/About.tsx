@@ -31,7 +31,6 @@ const activeImageList: ReactNode[] = imageMap.map((i) => (
 
 type AboutProps = {
     textWidth?: number;
-    scrollRef?: any;
     style?: React.CSSProperties;
     useSmall?: boolean;
     [prop: string]: any;
@@ -39,7 +38,6 @@ type AboutProps = {
 
 export default function About({
     textWidth = 0.6,
-    scrollRef,
     style = { padding: "4rem" },
     useSmall = false,
 }: AboutProps) {
@@ -78,12 +76,7 @@ export default function About({
     });
 
     return (
-        <a.div
-            className="sectionBlock"
-            id="about"
-            style={style}
-            ref={scrollRef}
-        >
+        <a.div className="sectionBlock" id="about" style={style}>
             <Grid container spacing={2}>
                 <Grid size={profileVisible ? textSize : 12}>
                     <Grid container spacing={2}>

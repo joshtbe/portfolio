@@ -614,7 +614,7 @@ const EducationBlurb: (string | ReactNode)[] = [
     </>,
 ];
 
-export default function Education({ scrollRef }: any) {
+export default function Education() {
     const [inView, visRef] = useVisible();
 
     const titleSpring = useSpring({
@@ -643,7 +643,6 @@ export default function Education({ scrollRef }: any) {
         <div
             id="education"
             className="sectionBlock"
-            ref={scrollRef}
             style={{ position: "relative" }}
         >
             <Grid container spacing={5}>
