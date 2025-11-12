@@ -68,28 +68,29 @@ export default function BasePage() {
         >
             {/* Background Viewports */}
 
-            <div
-                id="viewports"
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    position: "absolute",
-                    zIndex: 11,
-                    padding: 0,
-                    margin: 0,
-                }}
-            >
-                <Canvas linear flat dpr={[1, 2]}>
-                    <FPSCounter
-                        onFail={() => {
-                            setVersion(pageVersion.noThree);
-                        }}
-                    />
-                    {/* Centerpiece */}
-                    {/* <View track={galaxyView} index={0}></View> */}
-                    <Galaxy />
-                </Canvas>
-            </div>
+            {!noThree && (
+                <div
+                    id="viewports"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        position: "absolute",
+                        zIndex: 11,
+                        padding: 0,
+                        margin: 0,
+                    }}
+                >
+                    <Canvas linear flat dpr={[1, 2]}>
+                        <FPSCounter
+                            onFail={() => {
+                                setVersion(pageVersion.noThree);
+                            }}
+                        />
+                        {/* Centerpiece */}
+                        <Galaxy />
+                    </Canvas>
+                </div>
+            )}
 
             <div
                 id="viewports_bg"
@@ -212,20 +213,10 @@ export default function BasePage() {
                                 setVersion(pageVersion.noThree);
                             }}
                         />
-                        {/* Centerpiece */}
-                        <View track={galaxyView} index={0}>
-                            <Galaxy />
-                        </View>
-
                         <StarBackground
                             track={starView}
                             index={1}
                             numStars={400}
-                            starProps={
-                                {
-                                    // radiusRange: [.05,.2],
-                                }
-                            }
                         />
                     </Canvas>
                 </div>

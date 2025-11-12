@@ -5,7 +5,7 @@ import { randFloat, randInt } from "three/src/math/MathUtils.js";
 import { useViewport } from "../../utils/Hooks";
 import { Mesh, MeshStandardMaterial } from "three";
 
-export const STAR_COLORS : string[] = [
+export const STAR_COLORS: string[] = [
     "#9db4ff",
     "#a2b9ff",
     "#a7bcff",
@@ -30,8 +30,13 @@ export const STAR_COLORS : string[] = [
     "#D3D3D3",
 ]; //Length of 21 (22 with background but that doesnt count)
 
-function getBounds(viewport: {width: number, height: number}, boundMultiplier: [number,number]): {x: [number, number], y:[number,number]}{
-    let {width, height} = viewport;
+const TWO_PI = Math.PI * 2;
+
+function getBounds(
+    viewport: { width: number; height: number },
+    boundMultiplier: [number, number]
+): { x: [number, number]; y: [number, number] } {
+    let { width, height } = viewport;
     width = width * boundMultiplier[0];
     height = height * boundMultiplier[1];
 
@@ -42,133 +47,145 @@ function getBounds(viewport: {width: number, height: number}, boundMultiplier: [
 }
 
 export type StarsProps = {
-    numStars?: number
-    centerPosition?: [x: number, y: number, z: number],
-    radiusRange?: [number,number],
-    brightnessRange?: [number,number],
-    brightnessOffsetRange?: [number, number],
-    points?: number[] | number[][] | StarPoint,
-    boundMultiplier?: [xBound: number, yBound: number],
-    zPos?: number,
-    useColors?: boolean,
-    bake?: boolean,
-    animate?: boolean,
-    pointTransform?:(element: number | number[] | StarPoint) => StarPoint,
-    fixedSize?: {height: number, width: number, aspect: number} | undefined
+    numStars?: number;
+    centerPosition?: [x: number, y: number, z: number];
+    radiusRange?: [number, number];
+    brightnessRange?: [number, number];
+    brightnessOffsetRange?: [number, number];
+    points?: number[] | number[][] | StarPoint;
+    boundMultiplier?: [xBound: number, yBound: number];
+    zPos?: number;
+    useColors?: boolean;
+    bake?: boolean;
+    animate?: boolean;
+    pointTransform?: (element: number | number[] | StarPoint) => StarPoint;
+    fixedSize?: { height: number; width: number; aspect: number } | undefined;
 };
 
 type Star = {
-    position: [x: number, y: number, z: number],
-    radius: number,
-    modifier: number,
+    position: [x: number, y: number, z: number];
+    radius: number;
+    modifier: number;
     materialProps: {
-        emissive: string | number,
-        emissiveIntensity: number,
-        emissiveTo: number
-    },
+        emissive: string | number;
+        emissiveIntensity: number;
+        emissiveTo: number;
+    };
 };
-
 
 const Stars = React.forwardRef<any, StarsProps>((props: StarsProps, ref) => {
     const {
-        numStars=100,
-        points=[],
-        centerPosition=[0,0,0],
-        radiusRange=[0.01, 1],
-        brightnessRange=[0.25, 1.25],
-        brightnessOffsetRange=[.05, 1], 
-        boundMultiplier=[1,1],
-        useColors=false,
-        animate=false,
-        bake=false,
-        zPos=0,
-        pointTransform=undefined,
-        fixedSize=undefined,
+        numStars = 100,
+        points = [],
+        centerPosition = [0, 0, 0],
+        radiusRange = [0.01, 1],
+        brightnessRange = [0.25, 1.25],
+        brightnessOffsetRange = [0.05, 1],
+        boundMultiplier = [1, 1],
+        useColors = false,
+        animate = false,
+        bake = false,
+        zPos = 0,
+        pointTransform = undefined,
+        fixedSize = undefined,
     } = props;
 
-
     const size = fixedSize || useViewport();
+
     const generated = useRef<Star[]>([]);
-    const previousSize = useRef<{width: number, height: number} | undefined>();
+    const previousSize = useRef<
+        { width: number; height: number } | undefined
+    >();
 
     const stars = useMemo<Star[]>(() => {
-        const prev = previousSize.current as {width: number, height: number};
+        const prev = previousSize.current as { width: number; height: number };
 
-        if(size.width < 100){
+        if (size.width < 100) {
             return [];
-        }
-        else if(bake && (generated.current.length > 0) && (size.width <= prev.width) && (size.height <= prev.height)){
+        } else if (
+            bake &&
+            generated.current.length > 0 &&
+            size.width <= prev.width &&
+            size.height <= prev.height
+        ) {
             return generated.current;
         }
 
         let parsedPoints: StarPoint[] = [];
-        
+
         const bounds = getBounds(size, boundMultiplier);
 
-        if(points.length > 0 && pointTransform){
-            parsedPoints = points.map(e => pointTransform(e))
+        if (points.length > 0 && pointTransform) {
+            parsedPoints = points.map((e) => pointTransform(e));
+        } else {
+            parsedPoints = new Array(numStars)
+                .fill(0)
+                .map((_) => [
+                    randFloat(...bounds.x),
+                    randFloat(...bounds.y),
+                    randFloat(...radiusRange),
+                    useColors ? randInt(0, 20) : 21,
+                    randFloat(...brightnessRange),
+                ]);
         }
-        else{
-            parsedPoints = new Array(numStars).fill(0).map(_ => ([
-                randFloat(...bounds.x),
-                randFloat(...bounds.y),
-                randFloat(...radiusRange),
-                useColors ? randInt(0,20) : 21,
-                randFloat(...brightnessRange)
-            ]));
-        }
-        
 
-        const result : Star[] = parsedPoints.map(([x,y, radius, colorIndex, bright]) => ({
-            position: [x,y, zPos],
-            radius: radius,
-            modifier: randInt(0, STAR_COLORS.length),
-            materialProps: {
-                emissive: STAR_COLORS[colorIndex],
-                emissiveIntensity: bright,
-                emissiveTo: bright + randFloat(...brightnessOffsetRange),
+        const result: Star[] = parsedPoints.map(
+            ([x, y, radius, colorIndex, bright]) => {
+                return {
+                    position: [x, y, zPos],
+                    radius: radius,
+                    modifier: randInt(0, STAR_COLORS.length),
+                    materialProps: {
+                        emissive: STAR_COLORS[colorIndex],
+                        emissiveIntensity: bright,
+                        emissiveTo:
+                            bright + randFloat(...brightnessOffsetRange),
+                    },
+                };
             }
-        }));
+        );
+
         previousSize.current = size;
         generated.current = result;
         return result;
+    }, [size]);
 
-    }, [size])
-    
     const internalRef = useRef<any>();
-    if(animate){
-        useFrame(({clock}) => {
-            if(internalRef.current){
+    if (animate) {
+        useFrame(({ clock }) => {
+            if (internalRef.current) {
                 const time = clock.getElapsedTime();
                 const children: Mesh[] = internalRef.current?.children;
-                
-                
+
                 for (let i = 0; i < children.length; i++) {
-                    const {position, radius, modifier, materialProps} = stars[i];
-                    const addendum = (Math.sin(time + modifier)*radius);
+                    const { position, radius, modifier, materialProps } =
+                        stars[i];
+                    const addendum = Math.sin(time + modifier) * radius;
                     children[i].position.x = position[0] + addendum;
                     children[i].position.y = position[1] + addendum;
-                    
+
                     // Adjust brightness
-                    (children[i].material as MeshStandardMaterial).emissiveIntensity = Math.abs(materialProps.emissiveTo * Math.sin(time)) + materialProps.emissiveIntensity;
-                    (children[i].material as MeshStandardMaterial).needsUpdate = true;
+                    (
+                        children[i].material as MeshStandardMaterial
+                    ).emissiveIntensity =
+                        Math.abs(materialProps.emissiveTo * Math.sin(time)) +
+                        materialProps.emissiveIntensity;
+                    (children[i].material as MeshStandardMaterial).needsUpdate =
+                        true;
                 }
             }
-        })
+        });
     }
-
 
     return (
         <group ref={ref}>
             <group ref={internalRef} position={centerPosition}>
-                {
-                    stars.map((e,i) => (
-                        <mesh key={i} position={e.position}>
-                            <circleGeometry args={[e.radius]}/>
-                            <meshStandardMaterial {...e.materialProps}/>
-                        </mesh>
-                    ))
-                }
+                {stars.map((e, i) => (
+                    <mesh key={i} position={e.position}>
+                        <circleGeometry args={[e.radius, 5, 0, TWO_PI]} />
+                        <meshStandardMaterial {...e.materialProps} />
+                    </mesh>
+                ))}
             </group>
         </group>
     );
