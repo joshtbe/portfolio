@@ -7,7 +7,7 @@ import {
     Tooltip,
     Typography,
 } from "@mui/material";
-import React, { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 // Image Imports
 import algoRacerImage from "../assets/images/projects/algoracer.png";
@@ -304,7 +304,7 @@ export const projects: Project[] = [
             </ul>
         ),
         stack: ["react", "three"],
-        link: "https://github.com/joshtbe/joshbernsteint.github.io",
+        link: "https://github.com/joshtbe/joshtbe.github.io",
         completedDate: Date.parse("3/12/2023"),
         buttonProps: {
             image: url(websiteOneImage),
