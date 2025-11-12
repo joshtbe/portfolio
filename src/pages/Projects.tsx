@@ -103,7 +103,7 @@ export const projects : Project[] = [
         </>,
         stack: ['openai','react', 'express', 'mongo', 'tailwind', 'clerk'],
         type: displayTypes.GROUP,
-        link: "https://github.com/joshbernsteint/CoverAI",
+        link: "https://github.com/joshtbe/CoverAI",
         completedDate: Date.parse('4/26/2024'),
         buttonProps: {
             children: "CoverAI",
@@ -136,7 +136,7 @@ export const projects : Project[] = [
         </ul>,
         stack: ['react', 'express', 'mongo'],
         type: displayTypes.GROUP,
-        link: "https://github.com/joshbernsteint/AlgoRacer",
+        link: "https://github.com/joshtbe/AlgoRacer",
         completedDate: Date.parse('12/11/2023'),
         buttonProps: {
             children: "AlgoRacer",
@@ -203,7 +203,7 @@ export const projects : Project[] = [
             <li>List of all my relevant projects (like this).</li>
         </ul>,
         stack: ['react', 'three'],
-        link: "https://github.com/joshbernsteint/joshbernsteint.github.io",
+        link: "https://github.com/joshtbe/joshbernsteint.github.io",
         completedDate: Date.parse('3/12/2023'),
         buttonProps: {
             image: url(websiteOneImage),
@@ -235,7 +235,7 @@ export const projects : Project[] = [
             <li>Configure settings for a personalized experience.</li>
         </ul>,
         stack: ['electron', 'ffmpeg', 'react', 'express'],
-        link: "https://github.com/joshbernsteint/ANGEL",
+        link: "https://github.com/joshtbe/ANGEL",
         completedDate: Date.parse('8/31/2023'),
         buttonProps: {
             image: url(angelImage),
@@ -267,7 +267,7 @@ export const projects : Project[] = [
             <li>Payment can be given in the portal with Stripe.</li>
         </ul>,
         stack: ['react', 'express', 'firebase', 'socket', 'stripe'],
-        link: "https://github.com/joshbernsteint/team11-scrumptious_7",
+        link: "https://github.com/joshtbe/team11-scrumptious_7",
         completedDate: Date.parse('4/25/2023'),
         buttonProps: {
             image: url(solarImage),
@@ -300,7 +300,7 @@ export const projects : Project[] = [
             <li>Full branching support, including branching and linking.</li>
         </ul>,
         stack: ['logisim', 'python'],
-        link: "https://github.com/joshbernsteint/My-Projects/tree/main/ETHEL%20Assembler",
+        link: "https://github.com/joshtbe/My-Projects/tree/main/ETHEL%20Assembler",
         completedDate: Date.parse('3/16/2023'),
         buttonProps: {
             children: "E.T.H.E.L. CPU & Assembler",
@@ -324,7 +324,7 @@ export const projects : Project[] = [
 
             <p>
                 This extension also provides syntax highlighting, docstrings, macros, simple code completion, and more. 
-                For a more detailed look at all the extension's features, see the project's <LinkButton link="https://github.com/joshbernsteint/arm_helpers/blob/main/README.md">README</LinkButton>.
+                For a more detailed look at all the extension's features, see the project's <LinkButton link="https://github.com/joshtbe/arm_helpers/blob/main/README.md">README</LinkButton>.
             </p>
         </>,
         features: <ul>
@@ -333,7 +333,7 @@ export const projects : Project[] = [
             <li>Docstring support to annotate procedures. These annotations will appear in completion prompts.</li>
         </ul>,
         stack: ['vscode', 'javascript'],
-        link: 'https://github.com/joshbernsteint/arm_helpers',
+        link: 'https://github.com/joshtbe/arm_helpers',
         completedDate: Date.parse('8/28/2024'),
         buttonProps: {
             image: url(assemblyImage),
@@ -362,7 +362,7 @@ export const projects : Project[] = [
             <li>Pictures of my dogs and cat (easily the best part).</li>
         </ul>,
         stack: ['react', 'spring', 'three', 'mui', 'typescript'],
-        link: 'https://github.com/joshbernsteint/portfolio',
+        link: 'https://github.com/joshtbe/portfolio',
         completedDate: Date.now(),
         buttonProps: {
             image: url(thisImage),
@@ -376,7 +376,7 @@ export const projects : Project[] = [
     {
         name: 'cs_games',
         type: displayTypes.SOLO,
-        link: 'https://github.com/joshbernsteint/cs-games',
+        link: 'https://github.com/joshtbe/cs-games',
         completedDate: Date.parse('6/6/2024'),
         title: "CS Games",
         subtitle: "A Puzzle Competition Platform",
@@ -432,7 +432,7 @@ export const projects : Project[] = [
             <li>VSCode extension that adds syntax highlighting and basic code completion.</li>
         </ul>,
         stack: ['c'],
-        link: 'https://github.com/joshbernsteint/Algebropiler',
+        link: 'https://github.com/joshtbe/Algebropiler',
         completedDate: Date.parse('5/22/2024'),
         buttonProps: {
             image: url(algebropilerImage),
