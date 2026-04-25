@@ -11,10 +11,9 @@ import { ShapeTypes } from "../shapes/Shapes";
 import TextAndShapes from "../shapes/TextAndShapes";
 import Stars from "./Stars";
 import { useWindow } from "../../utils/Hooks";
+import { scrollTo } from "../../utils/SpringHooks";
 
-function scrollTo(id: string) {
-    document.getElementById(id)?.scrollIntoView();
-}
+
 
 const TWO_PI: number = 2 * Math.PI;
 const galaxyRadius = 300;

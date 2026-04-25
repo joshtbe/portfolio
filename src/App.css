@@ -1,30 +1,30 @@
 html {
-  margin: 0;
-  padding: 0rem;
-  width: 100vw;
-  height: 100vh;
-  background-color: #15181a;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+    --bg-color: #15181a;
+    --chip-color: #303030;
+
+    margin: 0;
+    padding: 0rem;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-color);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-
-
-
-.sectionBlock{
-  padding: 2rem;
-  width: 100vw;
-  height: max-content;
+.sectionBlock {
+    padding: 2rem;
+    width: 100vw;
+    height: max-content;
 }
 
-.sectionSpace{
-  margin: 2rem;
-  position: absolute;
-  width: 100%;
-  min-height: 100vh;
-  z-index: 3;
+.sectionSpace {
+    margin: 2rem;
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    z-index: 3;
 }
 
-#about{
-  opacity: .85;
+#about {
+    opacity: 0.85;
 }

@@ -30,3 +30,7 @@ export function useRotate(period: number, options: useRotateOptions = {}) : {rot
 
     return {rotate: rotateSpring, counter: counterSpring};
 }
+
+export function scrollTo(id: string) {
+    document.getElementById(id)?.scrollIntoView();
+}

@@ -112,7 +112,7 @@ const AnimatedDot = animated(
         <TimelineDot color={color} sx={{ opacity, ...props }}>
             {children}
         </TimelineDot>
-    )
+    ),
 );
 
 export default function Experience({ scrollRef }: any) {
@@ -132,14 +132,13 @@ export default function Experience({ scrollRef }: any) {
             opacity: inView ? 1 : 0,
             delay: (i + 2) * 250,
         }),
-        [inView]
+        [inView],
     );
 
     return (
         <div
             id="experience"
-            className="sectionBlock"
-            style={{ textAlign: "center" }}
+            className="sectionBlock text-center"
             ref={scrollRef}
         >
             <animated.div style={{ overflow: "hidden", ...title }} ref={visRef}>
@@ -150,9 +149,11 @@ export default function Experience({ scrollRef }: any) {
                     <TimelineItem key={i}>
                         <TimelineOppositeContent>
                             <animated.div style={{ opacity: trail[i].opacity }}>
-                                <b style={{ fontSize: "22pt" }}>{e.company}</b>
+                                <span className="text-3xl font-bold">
+                                    {e.company}
+                                </span>
                                 <br />
-                                <span style={{ fontSize: "18pt" }}>
+                                <span className="text-2xl">
                                     <i>
                                         {e.from.month} {e.from.year}
                                         {e.current ? (
@@ -182,16 +183,11 @@ export default function Experience({ scrollRef }: any) {
                         </TimelineSeparator>
                         <TimelineContent>
                             <animated.div style={{ opacity: trail[i].opacity }}>
-                                <span
-                                    style={{
-                                        fontSize: "24pt",
-                                        fontWeight: "bold",
-                                    }}
-                                >
+                                <span className="text-3xl font-bold">
                                     {e.title}
                                 </span>
                                 <br />
-                                <ul style={{ fontSize: "14pt" }}>
+                                <ul className="text-lg">
                                     {e.desc.map((e2, i2) => (
                                         <li key={i2}>{e2}</li>
                                     ))}

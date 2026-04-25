@@ -1,9 +1,9 @@
-import { useFrame, useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 
 export function useCursor(): [string, (newPointer: string) => void] {
     const [cursor, setCursor] = useState(
-        document.getElementById("root")?.style.cursor || "default"
+        document.getElementById("root")?.style.cursor || "default",
     );
     useEffect(() => {
         const element = document.getElementById("root");
@@ -74,7 +74,7 @@ export function useViewport() {
         setSize((cur) =>
             width !== cur.width || height !== cur.height
                 ? { height: height, width: width, aspect: aspect }
-                : cur
+                : cur,
         );
     }, [viewport]);
 
@@ -84,7 +84,7 @@ export function useViewport() {
 export function useHover(
     cursorType: string,
     onHoverStart: () => void = () => {},
-    onHoverEnd: () => void = () => {}
+    onHoverEnd: () => void = () => {},
 ): {
     onPointerEnter?: () => void;
     onPointerLeave?: () => void;
@@ -105,38 +105,9 @@ export function useHover(
     };
 }
 
-type useFPSArgs = {
-    target: number;
-    failTries: number;
-    onFail: (fps?: number) => void;
-};
-
-const useFPSDefaults: useFPSArgs = {
-    target: 30,
-    failTries: 5,
-    onFail: () => {},
-};
-
-export function useFPS(options: Partial<useFPSArgs> = useFPSDefaults) {
-    const { target, failTries, onFail } = { ...useFPSDefaults, ...options };
-    const failed = useRef<number>(0);
-
-    useFrame(({ clock }) => {
-        if (failed.current < failTries) {
-            const fps = 1 / clock.getDelta();
-            if (fps < target) {
-                failed.current++;
-            }
-            if (failed.current >= failTries) {
-                onFail(fps);
-            }
-        }
-    });
-}
-
 export function useVisible(
     oneShot: boolean = true,
-    checkPast: boolean = true
+    checkPast: boolean = true,
 ): [visible: boolean, ref: any] {
     const [visible, setVisible] = useState<boolean>(false);
     const objectRef = useRef();

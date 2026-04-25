@@ -9,60 +9,103 @@ import MobileExperience from "./Experience.tsx";
 import MobileSkills from "./Skills.tsx";
 import MobileProjects from "./Projects.tsx";
 
-
-export default function MobileBase({}){
-
+export default function MobileBase({}) {
     const aboutRef = useRef();
     const educationRef = useRef();
     const experienceRef = useRef();
     const skillsRef = useRef();
     const projectsRef = useRef();
 
-    function scrollToElement(ref: React.MutableRefObject<any>){
-        if(ref){
+    function scrollToElement(ref: React.MutableRefObject<any>) {
+        if (ref) {
             const el = ref.current as HTMLDivElement;
-            el.scrollIntoView({behavior: 'smooth'});
+            el.scrollIntoView({ behavior: "smooth" });
         }
     }
 
     return (
-        <div style={{width: '100%', height: '100%', overflowX: 'hidden', display: 'relative'}}>
-
-            <div style={{width: '100%', height: '100%', position: 'absolute', zIndex: 0, padding: 0, margin: 0, top: 0}}>
-                <div style={{width: '100%', height: '100%', position: 'fixed'}}>
-                    <Canvas linear flat dpr={[1,2]}>
-                        <PerspectiveCamera makeDefault position={[0,0,200]} fov={90}/>
-                        <ambientLight intensity={.85} />
+        <div className="w-full h-full overflow-x-hidden relative">
+            <div className="h-full w-full absolute z-0 p-0 m-0 top-0">
+                <div className="w-full h-full fixed">
+                    <Canvas linear flat dpr={[1, 2]}>
+                        <PerspectiveCamera
+                            makeDefault
+                            position={[0, 0, 200]}
+                            fov={90}
+                        />
+                        <ambientLight intensity={0.85} />
                         <Stars
                             bake
-                            zPos={-100} 
+                            zPos={-100}
                             numStars={250}
                             brightnessRange={[0.5, 1]}
                             animate
-                            radiusRange={[.1, .5]}
+                            radiusRange={[0.1, 0.5]}
                         />
                     </Canvas>
                 </div>
             </div>
 
-            <div style={{position: 'absolute', zIndex: 10, overflowX: 'hidden'}}>
-                <div className="sectionBlock" style={{textAlign: 'center'}}>
-                    <Typography variant="h1" fontSize={'4rem'}>Joshua Bernstein</Typography>
-                    <Typography variant="h5" fontSize={'1rem'}>Programmer | Dog Dad | Huge nerd</Typography>
-                    <br/>
+            <div className="absolute z-10 overflow-x-hidden">
+                <div className="sectionBlock text-center">
+                    <Typography variant="h1" fontSize={"4rem"}>
+                        Joshua Bernstein
+                    </Typography>
+                    <Typography variant="h5" fontSize={"1rem"}>
+                        Programmer | Dog Dad | Huge nerd
+                    </Typography>
+                    <br />
                     <Stack spacing={1}>
-                        <Button variant="contained" sx={{width: '100%'}} onClick={() => scrollToElement(aboutRef)}>About</Button>
-                        <Button variant="contained" sx={{width: '100%'}} onClick={() => scrollToElement(educationRef)}>Education</Button>
-                        <Button variant="contained" sx={{width: '100%'}} onClick={() => scrollToElement(experienceRef)}>Experience</Button>
-                        <Button variant="contained" sx={{width: '100%'}} onClick={() => scrollToElement(skillsRef)}>Skills</Button>
-                        <Button variant="contained" sx={{width: '100%'}} onClick={() => scrollToElement(projectsRef)}>Projects</Button>
+                        <Button
+                            variant="contained"
+                            sx={{ width: "100%" }}
+                            onClick={() => scrollToElement(aboutRef)}
+                        >
+                            About
+                        </Button>
+                        <Button
+                            variant="contained"
+                            sx={{ width: "100%" }}
+                            onClick={() => scrollToElement(educationRef)}
+                        >
+                            Education
+                        </Button>
+                        <Button
+                            variant="contained"
+                            sx={{ width: "100%" }}
+                            onClick={() => scrollToElement(experienceRef)}
+                        >
+                            Experience
+                        </Button>
+                        <Button
+                            variant="contained"
+                            sx={{ width: "100%" }}
+                            onClick={() => scrollToElement(skillsRef)}
+                        >
+                            Skills
+                        </Button>
+                        <Button
+                            variant="contained"
+                            sx={{ width: "100%" }}
+                            onClick={() => scrollToElement(projectsRef)}
+                        >
+                            Projects
+                        </Button>
                     </Stack>
                 </div>
-                <About useSmall scrollRef={aboutRef} style={{padding: '2rem'}}/><br/>
-                <MobileEducation scrollRef={educationRef}/><br/>
-                <MobileExperience scrollRef={experienceRef}/><br/>
-                <MobileSkills scrollRef={skillsRef}/><br/>
-                <MobileProjects scrollRef={projectsRef}/>
+                <About
+                    useSmall
+                    scrollRef={aboutRef}
+                    style={{ padding: "2rem" }}
+                />
+                <br />
+                <MobileEducation scrollRef={educationRef} />
+                <br />
+                <MobileExperience scrollRef={experienceRef} />
+                <br />
+                <MobileSkills scrollRef={skillsRef} />
+                <br />
+                <MobileProjects scrollRef={projectsRef} />
             </div>
         </div>
     );

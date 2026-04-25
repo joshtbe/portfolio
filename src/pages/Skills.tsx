@@ -159,7 +159,7 @@ export const spokes: SkillSpoke[] = [
 
             return (
                 <ADiv
-                    props={{ style: { textAlign: "center" } }}
+                    props={{ className: "text-center" }}
                     opacity={spring.opacity}
                 >
                     Adept at Git-based software. Including managing
@@ -182,7 +182,7 @@ export const spokes: SkillSpoke[] = [
                 <ADiv
                     opacity={spring.opacity}
                     props={{
-                        style: { textAlign: "center", marginRight: ".1rem" },
+                        className: "text-center mr-[.1rem]",
                     }}
                 >
                     Well-versed with different cloud computing platforms. Such
@@ -194,9 +194,7 @@ export const spokes: SkillSpoke[] = [
         color: "info",
     },
     {
-        title: (
-            <span style={{ marginRight: ".1rem" }}>Database Management</span>
-        ),
+        title: <span className="mr-[.1rem]">Database Management</span>,
         element: (idx, visible) => {
             const spring = useSpring({
                 opacity: visible ? 1 : 0,
@@ -207,7 +205,7 @@ export const spokes: SkillSpoke[] = [
                 <ADiv
                     opacity={spring.opacity}
                     props={{
-                        style: { textAlign: "center", marginRight: ".1rem" },
+                        className: "text-center mr-[.1rem]",
                     }}
                 >
                     Experienced with both SQL and NoSQL databases, with
@@ -253,7 +251,7 @@ export const spokes: SkillSpoke[] = [
                     delay: baseDelay + idx * 100,
                     config: config.gentle,
                 }),
-                [visible]
+                [visible],
             );
 
             return (
@@ -269,7 +267,7 @@ export const spokes: SkillSpoke[] = [
                         },
                     }}
                 >
-                    <p style={{ textAlign: "center" }}>
+                    <p className="text-center">
                         {langs.map((l, idx) => (
                             <span key={idx}>
                                 {idx > 0 && idx % 4 === 0 && (
@@ -300,11 +298,7 @@ export const spokes: SkillSpoke[] = [
         color: "primary",
     },
     {
-        title: (
-            <span style={{ marginLeft: ".1rem" }}>
-                Containerization software
-            </span>
-        ),
+        title: <span className="ml-[.1rem]">Containerization software</span>,
         element: (idx, visible) => {
             const spring = useSpring({
                 opacity: visible ? 1 : 0,
@@ -314,7 +308,7 @@ export const spokes: SkillSpoke[] = [
             return (
                 <ADiv
                     props={{
-                        style: { marginLeft: ".1rem", textAlign: "center" },
+                        className: "text-center ml-[.1rem]",
                     }}
                     opacity={spring.opacity}
                 >
@@ -365,7 +359,7 @@ export default function Skills() {
             opacity: inView ? 1 : 0,
             delay: i === 0 ? 350 : i * 500 + 150,
         }),
-        [inView]
+        [inView],
     );
 
     const mainSpring = useSpring({
@@ -375,22 +369,14 @@ export default function Skills() {
     });
 
     return (
-        <div
-            id="skills"
-            className="sectionBlock"
-            style={{ marginTop: "2rem", height: "100vh" }}
-        >
+        <div id="skills" className="sectionBlock mt-8 h-screen">
             <svg
                 viewBox="0 0 100 100"
                 xmlns="http://www.w3.org/2000/svg"
-                height={"100vh"}
-                width={"100%"}
+                className="h-screen w-full"
             >
                 <SvgHTML x={50} y={50} center height={50} width={50}>
-                    <div
-                        style={{ lineHeight: "100%", height: "50%" }}
-                        ref={visRef}
-                    >
+                    <div className="h-1/2 leading-[100%]" ref={visRef}>
                         <ADiv opacity={mainSpring.opacity}>
                             <Typography
                                 sx={{
@@ -427,7 +413,7 @@ export default function Skills() {
                                 : spokes[i].color
                         }
                     >
-                        <div style={{ height: "100%", width: "100%" }}>
+                        <div className="h-full w-full">
                             <ADiv opacity={titleSprings[i].opacity}>
                                 <Typography
                                     sx={{
@@ -440,7 +426,7 @@ export default function Skills() {
                                     {spokes[i].title}
                                 </Typography>
                             </ADiv>
-                            <div style={{ fontSize: "1pt" }} hidden={!inView}>
+                            <div className="text-[1pt]" hidden={!inView}>
                                 <br />
                                 {typeof spokes[i].element === "function"
                                     ? spokes[i].element(i, inView, false)

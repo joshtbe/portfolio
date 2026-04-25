@@ -20,21 +20,16 @@ import AType from "../components/animated/AnimatedTypography.tsx";
 const activeImageList: ReactNode[] = imageMap.map((i) => (
     <img
         {...i}
-        width={"80%"}
-        style={{
-            borderRadius: "10px",
-            border: ".5px solid white",
-            padding: ".25rem",
-        }}
+        className=":uno: rounded-lg border-[.5px] border-white p-1 w-8/10"
     />
 ));
 
-type AboutProps = {
+interface AboutProps {
     textWidth?: number;
     style?: React.CSSProperties;
     useSmall?: boolean;
     [prop: string]: any;
-};
+}
 
 export default function About({
     textWidth = 0.6,
@@ -58,7 +53,7 @@ export default function About({
             delay: i * 500 + 500,
             width: inView ? "100%" : "0%",
         }),
-        [inView]
+        [inView],
     );
 
     const titleSpring = useSpring({
@@ -117,10 +112,10 @@ export default function About({
                     </Grid>
                     <br />
                     <AType opacity={textSprings[0].opacity}>
-                        <span style={{ fontSize: "24pt" }} ref={visRef}>
+                        <span className="text-4xl" ref={visRef}>
                             Hello!{" "}
                         </span>
-                        I'm Josh, currently a 22-year-old Research Associate at
+                        I'm Josh, currently a 23-year-old Research Associate at
                         Stevens Institute of Technology in Hoboken, NJ. I
                         graduated from Stevens in May 2025 with a Masters in
                         Computer Science. I have a particular interest in web
@@ -156,7 +151,7 @@ export default function About({
                     </AType>{" "}
                     <br />
                     <a.hr style={{ marginLeft: 0, ...textSprings[4] }} />
-                    <div style={{ marginTop: "1rem" }}>
+                    <div className="mt-4">
                         <a.span style={{ opacity: textSprings[5].opacity }}>
                             <Button
                                 variant="contained"
@@ -189,7 +184,7 @@ export default function About({
                                         <img
                                             src={linkedInImg}
                                             width={80}
-                                            style={{ marginLeft: ".5rem" }}
+                                            className="ml-2"
                                         />
                                     </>
                                 ) : (
@@ -202,19 +197,16 @@ export default function About({
                 {profileVisible && (
                     <Grid size={imageSize}>
                         <a.div
+                            className="justify-center text-center content-center flex"
                             style={{
                                 marginTop: "5%",
-                                justifyContent: "center",
-                                textAlign: "center",
-                                alignContent: "center",
-                                display: "flex",
                                 flexFlow: "wrap",
                                 ...imageSpring,
                             }}
                         >
                             <Tooltip
                                 title={
-                                    <span style={{ fontSize: "12pt" }}>
+                                    <span className="text-xs">
                                         {imageMap[activeImage].alt}
                                     </span>
                                 }
@@ -233,7 +225,7 @@ export default function About({
                             </Tooltip>
                             <Pagination
                                 count={imageMap.length}
-                                sx={{ marginTop: ".5rem" }}
+                                className="mt-2"
                                 onChange={(_, page: number) =>
                                     setActiveImage(page - 1)
                                 }

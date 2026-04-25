@@ -62,18 +62,15 @@ export function IconWithText({
 }) {
     return (
         <div
+            className="flex items-center"
             style={{
                 fontSize: fontSize,
-                display: "flex",
-                alignItems: "center",
             }}
         >
             <span
+                className="inline-flex items-center justify-center"
                 style={{
                     fontSize: iconSize,
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
                     marginRight: space,
                 }}
             >
@@ -94,8 +91,8 @@ const SVGBox = animated(
         size: number;
         [k: string]: any;
     }) => (
-        <div style={{ width: "100%", height: "100%" }} {...props}>
-            <svg viewBox={`0 0 20 20`} style={{ transform: "rotate(45deg)" }}>
+        <div className="h-full w-full" {...props}>
+            <svg viewBox={`0 0 20 20`} className="rotate-45">
                 <rect
                     x="50%"
                     y="50%"
@@ -110,7 +107,7 @@ const SVGBox = animated(
                 />
             </svg>
         </div>
-    )
+    ),
 );
 
 function RCourse({
@@ -126,7 +123,7 @@ function RCourse({
     const hover = useHover(
         "pointer",
         () => setHovering(true),
-        () => setHovering(false)
+        () => setHovering(false),
     );
 
     const expandSpring = useSpring({
@@ -136,23 +133,10 @@ function RCourse({
 
     return (
         <div>
-            <div
-                style={{
-                    position: "absolute",
-                    textAlign: "center",
-                    width: "100%",
-                    height: "100%",
-                    fontSize: "20pt",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    zIndex: 15,
-                    top: "-3px",
-                }}
-            >
+            <div className="absolute text-center w-full h-full text-2xl flex items-center justify-center z-15 bottom-1">
                 <Tooltip
                     arrow
-                    title={<span style={{ fontSize: "12pt" }}>{name}</span>}
+                    title={<span className="text-base">{name}</span>}
                 >
                     <IconButton
                         disableTouchRipple
@@ -203,7 +187,7 @@ export const AnimatedCalendarIcon = animated(
                 </g>
             </svg>
         </SvgIcon>
-    )
+    ),
 );
 
 export function getSVGFill(timeCalcs?: {
@@ -277,13 +261,7 @@ function EducationRow({
             >
                 {level}
             </Typography>{" "}
-            <span
-                style={{
-                    fontSize: "16pt",
-                    verticalAlign: "middle",
-                    fontStyle: "italic",
-                }}
-            >
+            <span className="text-xl v-mid italic">
                 &mdash;{" "}
                 <Button
                     href={where.link}
@@ -307,17 +285,7 @@ function EducationRow({
                         <EventIcon fontSize="inherit" color="success" />
                     )
                 }
-                text={
-                    <span
-                        style={{
-                            fontStyle: "italic",
-                            verticalAlign: "middle",
-                            marginLeft: "1rem",
-                        }}
-                    >
-                        {date}
-                    </span>
-                }
+                text={<span className="italtic v-mid ml-4">{date}</span>}
             />
             <IconWithText
                 icon={<GradeIcon fontSize="inherit" color="inherit" />}
@@ -325,7 +293,7 @@ function EducationRow({
                 text={
                     <Tooltip
                         title={
-                            <span style={{ fontSize: "12pt" }}>
+                            <span className="text-base">
                                 GPA is on a 4-point scale.
                             </span>
                         }
@@ -342,18 +310,14 @@ function EducationRow({
                     </Tooltip>
                 }
             />
-            <div style={{ width: "max-content" }}>
+            <div className="w-max">
                 <IconWithText
                     icon={<SchoolIcon fontSize="inherit" />}
-                    text={
-                        <span style={{ marginLeft: "1rem" }}>
-                            Relevant Coursework
-                        </span>
-                    }
+                    text={<span className="ml-4">Relevant Coursework</span>}
                 />
                 <animated.hr style={{ width: hrSpring.width, marginLeft: 0 }} />
             </div>
-            <div style={{ width: "auto", padding: "0rem" }}>
+            <div className="w-auto p-0">
                 <Grid container sx={{ textAlign: "center" }} gap={0}>
                     {courses.map((e, i) => (
                         <Grid
@@ -392,17 +356,14 @@ export const myEducation: EducationRowProps[] = [
         courses: [
             {
                 name: "Compiler Design & Implementation",
-                link: "https://web.stevens.edu/catalog/archive/2024-2025/en/catalog/academic-catalog/courses/cs-computer-science/500/cs-516.html",
                 icon: <DesignServicesIcon fontSize="inherit" />,
             },
             {
                 name: "Quantum Computation",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-517/",
                 icon: <KeyboardIcon fontSize="inherit" />,
             },
             {
                 name: "Agile Methods for Development",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-555/",
                 icon: (
                     <SvgIcon fontSize="inherit">
                         <svg
@@ -420,12 +381,10 @@ export const myEducation: EducationRowProps[] = [
             },
             {
                 name: "Data Mining",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-513/",
                 icon: <QueryStatsIcon fontSize="inherit" />,
             },
             {
                 name: "Cloud Computing",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-526/",
                 icon: (
                     <SvgIcon fontSize="inherit">
                         <svg
@@ -443,11 +402,9 @@ export const myEducation: EducationRowProps[] = [
             {
                 name: "Natural Language Processing",
                 icon: <LanguageIcon fontSize="inherit" />,
-                link: "https://web.stevens.edu/catalog/archive/2022-2023/en/catalog/academic-catalog/courses/cs-computer-science/500/cs-584.html",
             },
             {
                 name: "Computer Vision",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-558/",
                 icon: <PreviewIcon fontSize="inherit" />,
             },
         ],
@@ -466,11 +423,9 @@ export const myEducation: EducationRowProps[] = [
             {
                 name: "Algorithms",
                 icon: <FormatListNumberedIcon fontSize="inherit" />,
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/300/cs-385/",
             },
             {
                 name: "Computer Organization & Systems",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/300/cs-382/",
                 icon: (
                     <SvgIcon fontSize="inherit">
                         <svg
@@ -488,16 +443,13 @@ export const myEducation: EducationRowProps[] = [
             {
                 name: "Systems Programming",
                 icon: <TerminalIcon fontSize="inherit" />,
-                link: "https://stevens.smartcatalogiq.com/en/2024-2025/academic-catalog/courses/cs-computer-science/300/cs-392/",
             },
             {
                 name: "Web Programming 1 & 2",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-546/",
                 icon: <WebIcon fontSize="inherit" />,
             },
             {
                 name: "Database Management Systems 1 & 2",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-561/",
                 icon: (
                     <SvgIcon>
                         <svg
@@ -514,7 +466,6 @@ export const myEducation: EducationRowProps[] = [
             },
             {
                 name: "Concurrent Programming",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-511/",
                 icon: (
                     <SvgIcon fontSize="inherit">
                         <svg
@@ -532,11 +483,9 @@ export const myEducation: EducationRowProps[] = [
             {
                 name: "Operating Systems",
                 icon: <DeveloperModeIcon fontSize="inherit" />,
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/400/cs-492/",
             },
             {
                 name: "Human Computer Interaction",
-                link: "https://stevens.smartcatalogiq.com/en/2023-2024/academic-catalog/courses/cs-computer-science/500/cs-545/",
                 icon: (
                     <SvgIcon fontSize="inherit">
                         <svg
@@ -630,7 +579,7 @@ export default function Education() {
             opacity: inView ? 1 : 0,
             delay: (i + 2) * 250,
         }),
-        [inView]
+        [inView],
     );
 
     const blurbTrail = useTrail(EducationBlurb.length, {
@@ -640,11 +589,7 @@ export default function Education() {
     });
 
     return (
-        <div
-            id="education"
-            className="sectionBlock"
-            style={{ position: "relative" }}
-        >
+        <div id="education" className="sectionBlock relative">
             <Grid container spacing={5}>
                 <Grid size={5}>
                     <div>
@@ -655,7 +600,7 @@ export default function Education() {
                             <Typography variant="h1">Education</Typography>
                         </animated.div>
                         <br />
-                        <animated.div style={{ width: "50%", margin: "auto" }}>
+                        <animated.div className="w-1/2 m-auto">
                             {EducationBlurb.map((e, i) => (
                                 <animated.div
                                     key={i}

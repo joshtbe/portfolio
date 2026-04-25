@@ -672,7 +672,7 @@ export const svgMap = Object.fromEntries(
             src={svgs[s]}
             style={{ display: "inline", height: "75px", margin: "0rem 1rem" }}
         />,
-    ])
+    ]),
 );
 
 export const projectMap: { [name: string]: Project } = (() => {
@@ -700,7 +700,7 @@ const Subheader = ({ children }: { children?: ReactNode }) => (
 export default function Projects() {
     const [inView, visRef] = useVisible(true, true);
     const [displayType, setDisplayType] = useState<displayTypes>(
-        displayTypes.ALL
+        displayTypes.ALL,
     );
     const [ascendingOrder, setAscendingOrder] = useState<boolean>(false);
     const [currentProject, setCurrentProject] = useState<string>("");
@@ -715,16 +715,16 @@ export default function Projects() {
                     otherProps={{ onClick: () => setCurrentProject(p.name) }}
                 />
             )),
-        []
+        [],
     );
 
     const displayedProjects = useMemo<boolean[]>(
         () =>
             projects.map(
                 (e) =>
-                    displayType === displayTypes.ALL || e.type === displayType
+                    displayType === displayTypes.ALL || e.type === displayType,
             ),
-        [displayType]
+        [displayType],
     );
 
     const sortedProjectsOrder = useMemo<number[]>(() => {
@@ -771,7 +771,7 @@ export default function Projects() {
             opacity: inView ? 1 : 0,
             delay: 250 + i * 250,
         }),
-        [inView]
+        [inView],
     );
 
     const projectsTrail = useTrail(projects.length, {
@@ -783,7 +783,7 @@ export default function Projects() {
     const showRightSide = width >= 1280;
 
     return (
-        <div id="projects" className="sectionBlock" style={{ height: "100vh" }}>
+        <div id="projects" className="sectionBlock h-screen">
             <Grid container sx={{ width: "100%", height: "100vh" }}>
                 <Grid
                     size={4}
@@ -794,15 +794,7 @@ export default function Projects() {
                         overflow: "auto",
                     }}
                 >
-                    <div
-                        style={{
-                            height: "100%",
-                            textAlign: "center",
-                            display: "flex",
-                            flexDirection: "column",
-                            overflow: "auto",
-                        }}
-                    >
+                    <div className="h-full text-center flex flex-col overflow-auto">
                         <AType
                             variant="h1"
                             style={{
@@ -815,17 +807,7 @@ export default function Projects() {
                         >
                             Projects
                         </AType>
-                        <div
-                            style={{
-                                height: "auto",
-                                margin: "3rem 0rem",
-                                color: "white",
-                                fontSize: "14pt",
-                                display: "flex",
-                                flexDirection: "column",
-                                overflow: "auto",
-                            }}
-                        >
+                        <div className="h-auto mx-0 my-12 text-white text-lg flex flex-col overflow-auto">
                             <a.div
                                 style={{
                                     fontSize: "10pt",
@@ -861,13 +843,13 @@ export default function Projects() {
                                     exclusive
                                     onChange={(_, val) =>
                                         setAscendingOrder((v) =>
-                                            typeof val === "boolean" ? val : v
+                                            typeof val === "boolean" ? val : v,
                                         )
                                     }
                                 >
                                     <Tooltip
                                         title={
-                                            <span style={{ fontSize: "12pt" }}>
+                                            <span className="text-base">
                                                 Sort Ascending (Earliest &rarr;
                                                 latest)
                                             </span>
@@ -882,7 +864,7 @@ export default function Projects() {
                                     </Tooltip>
                                     <Tooltip
                                         title={
-                                            <span style={{ fontSize: "12pt" }}>
+                                            <span className="text-base">
                                                 Sort Descending (Latest &rarr;
                                                 Earliest)
                                             </span>
@@ -909,9 +891,8 @@ export default function Projects() {
                             </a.div>
 
                             <a.div
+                                className={"m2-t overflow-auto"}
                                 style={{
-                                    overflow: "auto",
-                                    marginTop: ".5rem",
                                     ...titleSpring,
                                 }}
                             >
@@ -926,7 +907,7 @@ export default function Projects() {
                                             >
                                                 {projectButtons[i]}
                                             </a.span>
-                                        )
+                                        ),
                                 )}
                             </a.div>
                         </div>
@@ -935,16 +916,7 @@ export default function Projects() {
 
                 <Grid size={8}>
                     {selectedProject ? (
-                        <div
-                            style={{
-                                padding: "5rem",
-                                paddingTop: "8rem",
-                                paddingBottom: 0,
-                                display: "flex",
-                                flexDirection: "column",
-                                height: "100vh",
-                            }}
-                        >
+                        <div className="p-[5rem] pt-32 pb-0 flex flex-col h-screen">
                             <div>
                                 {/* Top Half of title*/}
                                 <div>
@@ -967,12 +939,7 @@ export default function Projects() {
                                         variant="outlined"
                                         color="primary"
                                         endIcon={
-                                            <span
-                                                style={{
-                                                    fontSize: "20pt",
-                                                    lineHeight: "10pt",
-                                                }}
-                                            >
+                                            <span className="text-xl leading-[10pt]">
                                                 <OpenInNewIcon fontSize="inherit" />
                                             </span>
                                         }
@@ -984,12 +951,7 @@ export default function Projects() {
                                 </div>
 
                                 {/* Bottom half of title*/}
-                                <div
-                                    style={{
-                                        lineHeight: "45px",
-                                        height: "40px",
-                                    }}
-                                >
+                                <div className=":uno: leading-[45px] h-[40px]">
                                     <Typography
                                         variant="h5"
                                         sx={{
@@ -1019,7 +981,7 @@ export default function Projects() {
                             </div>
 
                             <div
-                                style={{ flexGrow: 1, overflowY: "auto" }}
+                                className="grow overflow-y-auto"
                                 ref={projectRef}
                             >
                                 {!showRightSide && (
@@ -1037,12 +999,7 @@ export default function Projects() {
                                             variant="outlined"
                                             color="primary"
                                             endIcon={
-                                                <span
-                                                    style={{
-                                                        fontSize: "12pt",
-                                                        lineHeight: "10pt",
-                                                    }}
-                                                >
+                                                <span className="text-base leading-[10pt]">
                                                     <OpenInNewIcon fontSize="inherit" />
                                                 </span>
                                             }
@@ -1059,16 +1016,12 @@ export default function Projects() {
                                 <Subheader>Features</Subheader>
                                 {selectedProject.features}
                                 <Subheader>Technologies</Subheader> <br />
-                                <div style={{ padding: "0rem" }}>
+                                <div className="p-0">
                                     {selectedProject.stack?.map(
                                         (e: string, i: number) => (
                                             <Tooltip
                                                 title={
-                                                    <span
-                                                        style={{
-                                                            fontSize: "14pt",
-                                                        }}
-                                                    >
+                                                    <span className="text-lg">
                                                         {stackMap[e].name}
                                                     </span>
                                                 }
@@ -1081,27 +1034,15 @@ export default function Projects() {
                                                     {svgMap[e]}
                                                 </Button>
                                             </Tooltip>
-                                        )
+                                        ),
                                     )}
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                height: "100%",
-                                width: "100%",
-                            }}
-                        >
+                        <div className="flex items-center h-full w-full">
                             <div
-                                style={{
-                                    verticalAlign: "middle",
-                                    textAlign: "center",
-                                    width: "50%",
-                                    margin: "auto",
-                                }}
+                                className="v-mid text-center w-1/2 m-auto"
                                 ref={visRef}
                             >
                                 <AType
@@ -1113,7 +1054,7 @@ export default function Projects() {
                                 </AType>
                                 <br />
                                 <AType opacity={buttonsTrail[2].opacity}>
-                                    <span style={{ fontSize: "14pt" }}>
+                                    <span className="text-lg">
                                         You can also filter by projects done in
                                         a group, solo, or both. Additionally,
                                         you can sort projects by their

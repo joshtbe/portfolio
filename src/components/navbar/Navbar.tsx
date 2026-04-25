@@ -26,14 +26,14 @@ function NavbarButton({
     );
 }
 
-const Spacer = () => <span style={{ marginLeft: "1rem" }}></span>;
+const Spacer = () => <span className="ml-4"></span>;
 
 export default function Navbar() {
     return (
-        <div style={{ position: "relative" }}>
+        <div className="relative">
             <AppBar position="sticky" sx={{ zIndex: 20 }} color="inherit">
                 <Toolbar>
-                    <img src="/me.svg" height={75} style={{ padding: 10 }} />
+                    <img src="/me.svg" height={75} className="p-2" />
                     <Typography
                         variant="h5"
                         component="div"
@@ -42,7 +42,11 @@ export default function Navbar() {
                         Joshua Bernstein
                     </Typography>
                     <span style={{ fontSize: "Larger" }}>
-                        <NavbarButton link="./JoshuaBernstein_Resume.pdf" label="Resume" newTab />
+                        <NavbarButton
+                            link="./JoshuaBernstein_Resume.pdf"
+                            label="Resume"
+                            newTab
+                        />
                         <Spacer />
                         <NavbarButton
                             link="https://www.linkedin.com/in/joshua-bernstein-9700261b0/"
