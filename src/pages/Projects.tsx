@@ -536,7 +536,7 @@ export const projects: Project[] = [
         ),
         stack: ["react", "spring", "three", "mui", "typescript"],
         link: "https://github.com/joshtbe/portfolio",
-        completedDate: Date.now(),
+        completedDate: Date.parse("2/08/2025"),
         buttonProps: {
             image: url(thisImage),
             children: "This website",
