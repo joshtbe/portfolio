@@ -17,8 +17,6 @@ import SchoolIcon from "@mui/icons-material/School";
 import KeyboardIcon from "@mui/icons-material/Keyboard";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import PreviewIcon from "@mui/icons-material/Preview";
-import DataObjectIcon from "@mui/icons-material/DataObject";
-import CodeIcon from "@mui/icons-material/Code";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import WebIcon from "@mui/icons-material/Web";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
