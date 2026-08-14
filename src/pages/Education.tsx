@@ -502,43 +502,6 @@ export const myEducation: EducationRowProps[] = [
             },
         ],
     },
-    {
-        level: "High School",
-        id: "hs",
-        where: {
-            name: "Mahwah High School",
-            link: "https://hs.mahwah.k12.nj.us/",
-            color: "info",
-        },
-        date: "September 2017 to June 2021",
-        gpa: "4.0",
-        courses: [
-            {
-                name: "AP Computer Science A",
-                icon: <CodeIcon fontSize="inherit" />,
-            },
-            {
-                name: "AP Computer Science Principles",
-                icon: (
-                    <SvgIcon fontSize="inherit">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 -960 960 960"
-                            width="24px"
-                            fill="#FFFFFF"
-                        >
-                            <path d="M80-160v-120h80v-440q0-33 23.5-56.5T240-800h600v80H240v440h240v120H80Zm520 0q-17 0-28.5-11.5T560-200v-400q0-17 11.5-28.5T600-640h240q17 0 28.5 11.5T880-600v400q0 17-11.5 28.5T840-160H600Zm40-120h160v-280H640v280Zm0 0h160-160Z" />
-                        </svg>
-                    </SvgIcon>
-                ),
-            },
-            {
-                name: "Data Structures",
-                icon: <DataObjectIcon fontSize="inherit" />,
-            },
-        ],
-    },
 ];
 
 const EducationBlurb: (string | ReactNode)[] = [
